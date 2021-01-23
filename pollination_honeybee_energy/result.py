@@ -24,6 +24,36 @@ class _BaseResultOutput(_BaseResult):
 
 
 @dataclass
+class EnergyUseIntensity(Function):
+    """Get information about energy use intensity from energy simulation SQLite files."""
+
+    result_folder = Inputs.folder(
+        description='Path to folder containing SQLite files that were generated '
+        'by EnergyPlus. This can be a single EnergyPlus simulation folder or '
+        'it can be a folder with multiple sql files, in which case EUI will '
+        'be computed across all results.', path='result_folder'
+    )
+
+    units = Inputs.str(
+        description='A switch to indicate whether the data in the resulting JSON '
+        'should be in SI or IP units. Valid values are "si" and "ip".', default='si',
+        spec={'type': 'string', 'enum': ['si', 'ip']}
+    )
+
+    @command
+    def energy_use_intensity(self):
+        return 'honeybee-energy result energy-use-intensity result_folder ' \
+            '--{{inputs.units}} --output-file output.json'
+
+    available_outputs = Outputs.file(
+        description='A JSON object with the following keys - eui, total_floor_area, '
+        'total_energy, end_uses. The eui value is the energy use intensity across '
+        'the total floor area. The end_uses value is a dictionary containing a '
+        'breakdown of the eui by end use.', path='output.json'
+    )
+
+
+@dataclass
 class AvailableResultsInfo(_BaseResult):
     """Get information about time-series outputs that can be requested from a SQL file.
     """
