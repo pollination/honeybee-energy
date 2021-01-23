@@ -1,5 +1,5 @@
 from pollination_honeybee_energy.settings import SimParDefault, SimParLoadBalance, \
-    SimParComfort
+    SimParComfort, BaselineOrientationSimPars
 from queenbee.plugin.function import Function
 
 
@@ -18,4 +18,10 @@ def test_sim_par_load_balance():
 def test_sim_par_comfort():
     function = SimParComfort().queenbee
     assert function.name == 'sim-par-comfort'
+    assert isinstance(function, Function)
+
+
+def test_baseline_orientation_sim_pars():
+    function = BaselineOrientationSimPars().queenbee
+    assert function.name == 'baseline-orientation-sim-pars'
     assert isinstance(function, Function)

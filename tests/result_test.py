@@ -1,6 +1,12 @@
 from pollination_honeybee_energy.result import AvailableResultsInfo, DataByOutput, \
-    ResultCsvQueryable
+    ResultCsvQueryable, EnergyUseIntensity
 from queenbee.plugin.function import Function
+
+
+def test_energy_use_intensity():
+    function = EnergyUseIntensity().queenbee
+    assert function.name == 'energy-use-intensity'
+    assert isinstance(function, Function)
 
 
 def test_available_results_info():
