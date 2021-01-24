@@ -6,15 +6,15 @@ from queenbee_dsl.function import Inputs, Outputs, Function, command
 class SimParDefault(Function):
     """Get a SimulationParameter JSON with default outputs for energy use only."""
 
+    ddy = Inputs.file(
+        description='A DDY file with design days to be included in the '
+        'SimulationParameter', path='input.ddy', extensions=['ddy']
+    )
+
     filter_des_days = Inputs.str(
         description='A switch for whether the ddy-file should be filtered to only '
         'include 99.6 and 0.4 design days', default='filter-des-days',
         spec={'type': 'string', 'enum': ['filter-des-days', 'all-des-days']}
-    )
-
-    ddy = Inputs.file(
-        description='A DDY file with design days to be included in the '
-        'SimulationParameter', path='input.ddy', extensions=['ddy']
     )
 
     @command
@@ -55,19 +55,19 @@ class SimParComfort(SimParDefault):
 
 
 @dataclass
-class BaselineOrientationSimPars(SimParDefault):
+class BaselineOrientationSimPars(Function):
     """Get SimulationParameters with different north angles for a baseline building sim.
     """
+
+    ddy = Inputs.file(
+        description='A DDY file with design days to be included in the '
+        'SimulationParameter', path='input.ddy', extensions=['ddy']
+    )
 
     filter_des_days = Inputs.str(
         description='A switch for whether the ddy-file should be filtered to only '
         'include 99.6 and 0.4 design days', default='filter-des-days',
         spec={'type': 'string', 'enum': ['filter-des-days', 'all-des-days']}
-    )
-
-    ddy = Inputs.file(
-        description='A DDY file with design days to be included in the '
-        'SimulationParameter', path='input.ddy', extensions=['ddy']
     )
 
     @command
