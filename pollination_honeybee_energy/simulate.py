@@ -7,7 +7,7 @@ class SimulateModel(Function):
     """Simulate a Model JSON file in EnergyPlus."""
 
     model = Inputs.file(
-        description='Honeybee model in JSON format.', path='model.json',
+        description='Honeybee model in JSON format.', path='model.hbjson',
         extensions=['hbjson', 'json']
     )
 
@@ -22,9 +22,19 @@ class SimulateModel(Function):
 
     @command
     def simulate_model(self):
-        return 'honeybee-energy simulate model model.json weather.epw ' \
-            '--sim-par-json sim-par.json --folder output ' \
-            '--log-file output/output_paths.json'
+        return 'honeybee-energy simulate model model.hbjson weather.epw ' \
+            '--sim-par-json sim-par.json --folder output'
+
+    result_folder = Outputs.folder(
+        description='Folder containing all simulation result files.',
+        path='output/run'
+    )
+
+    hbjson = Outputs.file(
+        description='A clean version of the input model that is in a format, which can '
+        'be easily consumed by OpenStudio and directly matched to EnergyPlus results.',
+        path='output/in.hbjson'
+    )
 
     osm = Outputs.file(
         description='The OpenStudio model used in the simulation.',
@@ -72,13 +82,7 @@ class SimulateOsm(Function):
 
     @command
     def simulate_model(self):
-        return 'honeybee-energy simulate osm model.osm weather.epw ' \
-            '--folder output --log-file output/output_paths.json'
-
-    osm = Outputs.file(
-        description='The OpenStudio model used in the simulation.',
-        path='output/run/in.osm'
-    )
+        return 'honeybee-energy simulate osm model.osm weather.epw --folder output'
 
     idf = Outputs.file(
         description='The IDF model used in the simulation.',
@@ -121,35 +125,24 @@ class SimulateIdf(Function):
 
     @command
     def simulate_model(self):
-        return 'honeybee-energy simulate idf model.idf weather.epw ' \
-            '--folder output/run --log-file output/run/output_paths.json'
-
-    osm = Outputs.file(
-        description='The OpenStudio model used in the simulation.',
-        path='output/run/in.osm'
-    )
-
-    idf = Outputs.file(
-        description='The IDF model used in the simulation.',
-        path='output/run/in.idf'
-    )
+        return 'honeybee-energy simulate idf model.idf weather.epw --folder output'
 
     sql = Outputs.file(
         description='The result SQL file output by the simulation.',
-        path='output/run/eplusout.sql'
+        path='output/eplusout.sql'
     )
 
     zsz = Outputs.file(
         description='The result CSV with the zone loads over the design day output '
-        'by the simulation.', path='output/run/epluszsz.csv'
+        'by the simulation.', path='output/epluszsz.csv'
     )
 
     html = Outputs.file(
         description='The result HTML page with summary reports output by the '
-        'simulation.', path='output/run/eplustbl.htm'
+        'simulation.', path='output/eplustbl.htm'
     )
 
     err = Outputs.file(
         description='The error report output by the simulation.',
-        path='output/run/eplusout.err'
+        path='output/eplusout.err'
     )
