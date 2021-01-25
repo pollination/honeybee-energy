@@ -113,13 +113,13 @@ class Hvac2004(Function):
          '3C', '4C', '5C']}
     )
 
-    nonresidential = Inputs.str(
+    is_residential = Inputs.str(
         description='A switch to note whether the model represents a residential '
         'or nonresidential building.', default='nonresidential',
         spec={'type': 'string', 'enum': ['nonresidential', 'residential']}
     )
 
-    fuel = Inputs.str(
+    energy_source = Inputs.str(
         description='A switch to note whether the available energy source is '
         'fossil fuel based or all-electric.', default='fuel',
         spec={'type': 'string', 'enum': ['fuel', 'electric']}
@@ -139,7 +139,7 @@ class Hvac2004(Function):
     @command
     def hvac_2004(self):
         return 'honeybee-energy baseline hvac-2004 model.json {{self.climate_zone}} ' \
-            '--{{self.nonresidential}} --{{self.fuel}} ' \
+            '--{{self.is_residential}} --{{self.energy_source}} ' \
             '--story-count {{self.story_count}} --floor-area {{self.floor_area}} ' \
             '--output-file new_model.json'
 
