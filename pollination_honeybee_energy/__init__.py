@@ -20,7 +20,7 @@ __queenbee__ = {
     },
     'config': {
         'docker': {
-            'image': 'ladybugtools/honeybee-energy:1.66.7',
+            'image': 'ladybugtools/honeybee-energy:1.66.8',
             'workdir': '/home/ladybugbot/run'
         }
     }
