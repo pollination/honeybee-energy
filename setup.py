@@ -13,7 +13,7 @@ setuptools.setup(
     author='ladybug-tools',
     author_email='info@ladybug.tools',
     maintainer='chris, ladybug-tools',
-    maintainer_email='chris@ladybug.tools, info@ladybug-tools',
+    maintainer_email='chris@ladybug.tools, info@ladybug.tools',
     packages=setuptools.find_namespace_packages(
         include=['pollination.*'], exclude=['tests', '.github']
     ),
