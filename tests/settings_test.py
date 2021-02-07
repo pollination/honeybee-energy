@@ -1,4 +1,4 @@
-from pollination_honeybee_energy.settings import SimParDefault, SimParLoadBalance, \
+from pollination.honeybee_energy.settings import SimParDefault, SimParLoadBalance, \
     SimParComfort, BaselineOrientationSimPars
 from queenbee.plugin.function import Function
 

@@ -1,4 +1,4 @@
-from pollination_honeybee_energy.result import AvailableResultsInfo, DataByOutput, \
+from pollination.honeybee_energy.result import AvailableResultsInfo, DataByOutput, \
     ResultCsvQueryable, EnergyUseIntensity
 from queenbee.plugin.function import Function
 

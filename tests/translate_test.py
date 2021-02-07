@@ -1,4 +1,4 @@
-from pollination_honeybee_energy.translate import ModelToOsm
+from pollination.honeybee_energy.translate import ModelToOsm
 from queenbee.plugin.function import Function
 
 

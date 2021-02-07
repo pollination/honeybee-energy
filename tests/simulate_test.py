@@ -1,4 +1,4 @@
-from pollination_honeybee_energy.simulate import SimulateModel, SimulateOsm, SimulateIdf
+from pollination.honeybee_energy.simulate import SimulateModel, SimulateOsm, SimulateIdf
 from queenbee.plugin.function import Function
 
 
