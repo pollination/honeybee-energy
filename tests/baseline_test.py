@@ -1,4 +1,4 @@
-from pollination_honeybee_energy.baseline import Geometry2004, Constructions2004, \
+from pollination.honeybee_energy.baseline import Geometry2004, Constructions2004, \
     Lighting2004, Hvac2004, RemoveEcms
 from queenbee.plugin.function import Function
 

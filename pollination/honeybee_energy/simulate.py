@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from queenbee_dsl.function import Inputs, Outputs, Function, command
+from pollination_dsl.function import Inputs, Outputs, Function, command
 
 
 @dataclass
