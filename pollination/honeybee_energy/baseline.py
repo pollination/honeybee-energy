@@ -12,18 +12,18 @@ class Geometry2004(Function):
     """
 
     model = Inputs.file(
-        description='Honeybee model in JSON format.', path='model.json',
+        description='Honeybee model in JSON format.', path='model.hbjson',
         extensions=['hbjson', 'json']
     )
 
     @command
     def geometry_2004(self):
-        return 'honeybee-energy baseline geometry-2004 model.json ' \
-            '--output-file new_model.json'
+        return 'honeybee-energy baseline geometry-2004 model.hbjson ' \
+            '--output-file new_model.hbjson'
 
     new_model = Outputs.file(
         description='Model JSON with its properties edited to conform to ASHRAE '
-        '90.1 appendix G.', path='new_model.json'
+        '90.1 appendix G.', path='new_model.hbjson'
     )
 
 
@@ -36,7 +36,7 @@ class Constructions2004(Function):
     """
 
     model = Inputs.file(
-        description='Honeybee model in JSON format.', path='model.json',
+        description='Honeybee model in JSON format.', path='model.hbjson',
         extensions=['hbjson', 'json']
     )
 
@@ -53,12 +53,12 @@ class Constructions2004(Function):
 
     @command
     def constructions_2004(self):
-        return 'honeybee-energy baseline constructions-2004 model.json ' \
-            '{{self.climate_zone}} --output-file new_model.json'
+        return 'honeybee-energy baseline constructions-2004 model.hbjson ' \
+            '{{self.climate_zone}} --output-file new_model.hbjson'
 
     new_model = Outputs.file(
         description='Model JSON with its properties edited to conform to ASHRAE '
-        '90.1 appendix G.', path='new_model.json'
+        '90.1 appendix G.', path='new_model.hbjson'
     )
 
 
@@ -73,18 +73,18 @@ class Lighting2004(Function):
     """
 
     model = Inputs.file(
-        description='Honeybee model in JSON format.', path='model.json',
+        description='Honeybee model in JSON format.', path='model.hbjson',
         extensions=['hbjson', 'json']
     )
 
     @command
     def lighting_2004(self):
-        return 'honeybee-energy baseline lighting-2004 model.json ' \
-            '--output-file new_model.json'
+        return 'honeybee-energy baseline lighting-2004 model.hbjson ' \
+            '--output-file new_model.hbjson'
 
     new_model = Outputs.file(
         description='Model JSON with its properties edited to conform to ASHRAE '
-        '90.1 appendix G.', path='new_model.json'
+        '90.1 appendix G.', path='new_model.hbjson'
     )
 
 
@@ -98,7 +98,7 @@ class Hvac2004(Function):
     """
 
     model = Inputs.file(
-        description='Honeybee model in JSON format.', path='model.json',
+        description='Honeybee model in JSON format.', path='model.hbjson',
         extensions=['hbjson', 'json']
     )
 
@@ -138,14 +138,14 @@ class Hvac2004(Function):
 
     @command
     def hvac_2004(self):
-        return 'honeybee-energy baseline hvac-2004 model.json {{self.climate_zone}} ' \
+        return 'honeybee-energy baseline hvac-2004 model.hbjson {{self.climate_zone}} ' \
             '--{{self.is_residential}} --{{self.energy_source}} ' \
             '--story-count {{self.story_count}} --floor-area {{self.floor_area}} ' \
-            '--output-file new_model.json'
+            '--output-file new_model.hbjson'
 
     new_model = Outputs.file(
         description='Model JSON with its properties edited to conform to ASHRAE '
-        '90.1 appendix G.', path='new_model.json'
+        '90.1 appendix G.', path='new_model.hbjson'
     )
 
 
@@ -158,16 +158,16 @@ class RemoveEcms(Function):
     """
 
     model = Inputs.file(
-        description='Honeybee model in JSON format.', path='model.json',
+        description='Honeybee model in JSON format.', path='model.hbjson',
         extensions=['hbjson', 'json']
     )
 
     @command
     def remove_ecms(self):
-        return 'honeybee-energy baseline remove-ecms model.json ' \
-            '--output-file new_model.json'
+        return 'honeybee-energy baseline remove-ecms model.hbjson ' \
+            '--output-file new_model.hbjson'
 
     new_model = Outputs.file(
         description='Model JSON with its properties edited to conform to ASHRAE '
-        '90.1 appendix G.', path='new_model.json'
+        '90.1 appendix G.', path='new_model.hbjson'
     )
