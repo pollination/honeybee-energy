@@ -14,7 +14,7 @@ class SimParDefault(Function):
     run_period = Inputs.str(
         description='An AnalysisPeriod string or an IDF RunPeriod string to set the '
         'start and end dates of the simulation (eg. "6/21 to 9/21 between 0 and 23 @1").'
-        ' If None, the simulation will be annual.', default='None'
+        ' If None, the simulation will be annual.', default=''
     )
 
     north = Inputs.int(
@@ -82,7 +82,7 @@ class BaselineOrientationSimPars(Function):
     run_period = Inputs.str(
         description='An AnalysisPeriod string or an IDF RunPeriod string to set the '
         'start and end dates of the simulation (eg. "6/21 to 9/21 between 0 and 23 @1").'
-        ' If None, the simulation will be annual.', default='None'
+        ' If None, the simulation will be annual.', default=''
     )
 
     north = Inputs.int(
