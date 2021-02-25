@@ -32,7 +32,7 @@ class SimParDefault(Function):
     @command
     def create_sim_param(self):
         return 'honeybee-energy settings default-sim-par input.ddy ' \
-            '--run-period {{self.run_period}} --north {{self.north}} ' \
+            '--run-period "{{self.run_period}}" --north {{self.north}} ' \
             '--{{self.filter_des_days}} --output-file sim_par.json'
 
     sim_par_json = Outputs.file(
@@ -54,7 +54,7 @@ class SimParLoadBalance(SimParDefault):
     @command
     def create_sim_param(self):
         return 'honeybee-energy settings load-balance-sim-par input.ddy --load-type ' \
-            '{{self.load_type}} --run-period {{self.run_period}} --north ' \
+            '{{self.load_type}} --run-period "{{self.run_period}}" --north ' \
             '{{self.north}} --{{self.filter_des_days}} --output-file sim_par.json'
 
 
@@ -65,7 +65,7 @@ class SimParComfort(SimParDefault):
     @command
     def create_sim_param(self):
         return 'honeybee-energy settings comfort-sim-par input.ddy ' \
-            '--run-period {{self.run_period}} --north {{self.north}} ' \
+            '--run-period "{{self.run_period}}" --north {{self.north}} ' \
             '--{{self.filter_des_days}} --output-file sim_par.json'
 
 
@@ -100,7 +100,7 @@ class BaselineOrientationSimPars(Function):
     @command
     def baseline_orientation_sim_pars(self):
         return 'honeybee-energy settings orientation-sim-pars input.ddy ' \
-            '0 90 180 270 --run-period {{self.run_period}} --start-north ' \
+            '0 90 180 270 --run-period "{{self.run_period}}" --start-north ' \
             '{{self.north}} --{{self.filter_des_days}} --folder output ' \
             '--log-file output/sim_par_info.json'
 
