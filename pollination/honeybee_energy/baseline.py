@@ -44,11 +44,15 @@ class Constructions2004(Function):
         description='Text indicating the ASHRAE climate zone. This can be a single '
         'integer (in which case it is interpreted as A) or it can include the '
         'A, B, or C qualifier (eg. 3C).',
-        spec={'type': 'string', 'enum':
-        ['1', '2', '3', '4', '5', '6', '7', '8',
-         '1A', '2A', '3A', '4A', '5A', '6A', '7A', '8A',
-         '1B', '2B', '3B', '4B', '5B', '6B', '7B', '8B',
-         '3C', '4C', '5C']}
+        spec={
+            'type': 'string',
+            'enum': [
+                '1', '2', '3', '4', '5', '6', '7', '8',
+                '1A', '2A', '3A', '4A', '5A', '6A', '7A', '8A',
+                '1B', '2B', '3B', '4B', '5B', '6B', '7B', '8B',
+                '3C', '4C', '5C'
+            ]
+        }
     )
 
     @command
@@ -106,11 +110,15 @@ class Hvac2004(Function):
         description='Text indicating the ASHRAE climate zone. This can be a single '
         'integer (in which case it is interpreted as A) or it can include the '
         'A, B, or C qualifier (eg. 3C).',
-        spec={'type': 'string', 'enum':
-        ['1', '2', '3', '4', '5', '6', '7', '8',
-         '1A', '2A', '3A', '4A', '5A', '6A', '7A', '8A',
-         '1B', '2B', '3B', '4B', '5B', '6B', '7B', '8B',
-         '3C', '4C', '5C']}
+        spec={
+            'type': 'string',
+            'enum': [
+                '1', '2', '3', '4', '5', '6', '7', '8',
+                '1A', '2A', '3A', '4A', '5A', '6A', '7A', '8A',
+                '1B', '2B', '3B', '4B', '5B', '6B', '7B', '8B',
+                '3C', '4C', '5C'
+            ]
+        }
     )
 
     is_residential = Inputs.str(

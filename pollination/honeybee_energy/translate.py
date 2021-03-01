@@ -29,3 +29,41 @@ class ModelToOsm(Function):
     idf = Outputs.file(
         description='The IDF file.', path='output/run/in.idf'
     )
+
+
+@dataclass
+class ModelOccSchedules(Function):
+    """Translate a Model's occupancy schedules into a JSON of 0/1 values.
+
+    This JSON is useful in workflows that compute thermal comfort percent,
+    daylight autonomy, etc.
+    """
+
+    model = Inputs.file(
+        description='Honeybee model in JSON format.', path='model.json',
+        extensions=['hbjson', 'json']
+    )
+
+    period = Inputs.str(
+        description='An AnalysisPeriod string to dictate the start and end of the '
+        'exported occupancy values (eg. "6/21 to 9/21 between 0 and 23 @1"). Note '
+        'that the timestep of the period will determine the timestep of output '
+        'values. If unspecified, the values will be annual.', default=''
+    )
+
+    threshold = Inputs.float(
+        description='A number between 0 and 1 for the threshold at and above which '
+        'a schedule value is considered occupied.', default=0.1,
+        spec={'type': 'number', 'maximum': 1, 'minimum': 0}
+    )
+
+    @command
+    def export_model_occ_schedules(self):
+        return 'honeybee-energy translate model-occ-schedules model.json ' \
+            '--threshold {{self.threshold}} --period "{{self.period}}" ' \
+            '--output-file occ_schedules.json'
+
+    occ_schedule_json = Outputs.file(
+        description='An occupancy schedule JSON that is useful in workflows like '
+        'thermal comfort percent, daylight autonomy, etc.', path='occ_schedules.json'
+    )
