@@ -20,10 +20,18 @@ class SimulateModel(Function):
         'simulation.', path='sim-par.json', extensions=['json']
     )
 
+    additional_string = Inputs.str(
+        description='An additional text string to be appended to the IDF before '
+        'simulation. The input should include complete EnergyPlus objects as a '
+        'single string following the IDF format. This input can be used to include '
+        'EnergyPlus objects that are not currently supported by honeybee.', default=''
+    )
+
     @command
     def simulate_model(self):
         return 'honeybee-energy simulate model model.hbjson weather.epw ' \
-            '--sim-par-json sim-par.json --folder output'
+            '--sim-par-json sim-par.json --additional-string ' \
+            '"{{self.additional_string}}" --folder output'
 
     result_folder = Outputs.folder(
         description='Folder containing all simulation result files.',
