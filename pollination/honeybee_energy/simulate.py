@@ -17,7 +17,7 @@ class SimulateModel(Function):
 
     sim_par = Inputs.file(
         description='SimulationParameter JSON that describes the settings for the '
-        'simulation.', path='sim-par.json', extensions=['json']
+        'simulation.', path='sim-par.json', extensions=['json'], optional=True
     )
 
     additional_string = Inputs.str(
