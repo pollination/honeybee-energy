@@ -12,7 +12,3 @@ update_configs:
           dependency_name: "wheel"
       - match:
           dependency_name: "setuptools"
-    allowed_updates:
-      - match:
-          dependency_type: "production"
-          update_type: "all"
