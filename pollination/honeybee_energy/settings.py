@@ -70,6 +70,45 @@ class SimParComfort(SimParDefault):
 
 
 @dataclass
+class SimParSizing(Function):
+    """Get a SimulationParameter JSON with outputs for peak loads and HVAC sizing."""
+
+    ddy = Inputs.file(
+        description='A DDY file with design days to be included in the '
+        'SimulationParameter', path='input.ddy', extensions=['ddy']
+    )
+
+    load_type = Inputs.str(
+        description='Text to indicate the type of load. Choose from (Total, Sensible, '
+        'Latent, All)', default='Total',
+        spec={'type': 'string', 'enum': ['Total', 'Sensible', 'Latent', 'All']}
+    )
+
+    north = Inputs.int(
+        description='A number from -360 to 360 for the counterclockwise difference '
+        'between North and the positive Y-axis in degrees. 90 is west; 270 is east',
+        default=0, spec={'type': 'integer', 'maximum': 360, 'minimum': -360}
+    )
+
+    filter_des_days = Inputs.str(
+        description='A switch for whether the ddy-file should be filtered to only '
+        'include 99.6 and 0.4 design days', default='filter-des-days',
+        spec={'type': 'string', 'enum': ['filter-des-days', 'all-des-days']}
+    )
+
+    @command
+    def create_sim_param(self):
+        return 'honeybee-energy settings sizing-sim-par input.ddy ' \
+            '--load-type {{self.load_type}} --north {{self.north}} ' \
+            '--{{self.filter_des_days}} --output-file sim_par.json'
+
+    sim_par_json = Outputs.file(
+        description='SimulationParameter JSON with outputs for peak loads and '
+        'HVAC sizing.', path='sim_par.json'
+    )
+
+
+@dataclass
 class BaselineOrientationSimPars(Function):
     """Get SimulationParameters with different north angles for a baseline building sim.
     """
