@@ -61,7 +61,7 @@ class SimulateModel(Function):
 
     zsz = Outputs.file(
         description='The result CSV with the zone loads over the design day output '
-        'by the simulation.', path='output/run/epluszsz.csv'
+        'by the simulation.', path='output/run/epluszsz.csv', optional=True
     )
 
     html = Outputs.file(
@@ -104,7 +104,7 @@ class SimulateOsm(Function):
 
     zsz = Outputs.file(
         description='The result CSV with the zone loads over the design day output '
-        'by the simulation.', path='output/run/epluszsz.csv'
+        'by the simulation.', path='output/run/epluszsz.csv', optional=True
     )
 
     html = Outputs.file(
@@ -142,7 +142,7 @@ class SimulateIdf(Function):
 
     zsz = Outputs.file(
         description='The result CSV with the zone loads over the design day output '
-        'by the simulation.', path='output/epluszsz.csv'
+        'by the simulation.', path='output/epluszsz.csv', optional=True
     )
 
     html = Outputs.file(
