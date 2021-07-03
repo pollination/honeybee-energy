@@ -1,6 +1,6 @@
 # Pollination Honeybee Energy plugin
 
-The honeybee-energy plugin adds energy simulation functions to Pollination.
+A plugin adds energy simulation functions to Pollination.
 
 ## Sources
 
