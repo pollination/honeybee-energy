@@ -15,6 +15,12 @@ class SimulateModel(Function):
         description='Weather file.', path='weather.epw', extensions=['epw']
     )
 
+    ddy = Inputs.file(
+        description='Optional design day file to be used in the sizing calculation '
+        'if no design days are specified in the sim_par.',
+        path='weather.ddy', extensions=['ddy'], optional=True
+    )
+
     sim_par = Inputs.file(
         description='SimulationParameter JSON that describes the settings for the '
         'simulation.', path='sim-par.json', extensions=['json'], optional=True
