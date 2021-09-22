@@ -105,13 +105,13 @@ class SimulateModel(Function):
     result_report = Outputs.file(
         description='The HTML report with interactive summaries of energy use, '
         'HVAC component sizes, and other information.', optional=True,
-        path='reports/openstudio_results_report.html'
+        path='output/reports/openstudio_results_report.html'
     )
 
     visual_report = Outputs.file(
         description='The HTML report with hourly EnergyPlus output variables '
         'visualized on the geometry.', optional=True,
-        path='reports/view_data_report.html'
+        path='output/reports/view_data_report.html'
     )
 
 
