@@ -7,8 +7,9 @@ class SimulateModel(Function):
     """Simulate a Model JSON file in EnergyPlus."""
 
     model = Inputs.file(
-        description='Honeybee model in JSON format.', path='model.hbjson',
-        extensions=['hbjson', 'json']
+        description='An energy Model as either a HBJSON, OSM, or IDF.',
+        path='model.hbjson',
+        extensions=['hbjson', 'json', 'osm', 'idf']
     )
 
     epw = Inputs.file(
@@ -69,12 +70,12 @@ class SimulateModel(Function):
     hbjson = Outputs.file(
         description='A clean version of the input model that is in a format, which can '
         'be easily consumed by OpenStudio and directly matched to EnergyPlus results.',
-        path='output/in.hbjson'
+        path='output/in.hbjson', optional=True
     )
 
     osm = Outputs.file(
         description='The OpenStudio model used in the simulation.',
-        path='output/run/in.osm'
+        path='output/run/in.osm', optional=True
     )
 
     idf = Outputs.file(
@@ -84,7 +85,7 @@ class SimulateModel(Function):
 
     sql = Outputs.file(
         description='The result SQL file output by the simulation.',
-        path='output/run/eplusout.sql'
+        path='output/run/eplusout.sql', optional=True
     )
 
     zsz = Outputs.file(
@@ -94,7 +95,7 @@ class SimulateModel(Function):
 
     html = Outputs.file(
         description='The result HTML page with summary reports output by the '
-        'simulation.', path='output/run/eplustbl.htm'
+        'simulation.', path='output/run/eplustbl.htm', optional=True
     )
 
     err = Outputs.file(
