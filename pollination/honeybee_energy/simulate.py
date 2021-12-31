@@ -85,7 +85,7 @@ class SimulateModel(Function):
 
     sql = Outputs.file(
         description='The result SQL file output by the simulation.',
-        path='output/run/eplusout.sql', optional=True
+        path='output/run/eplusout.sql'
     )
 
     zsz = Outputs.file(
@@ -95,7 +95,7 @@ class SimulateModel(Function):
 
     html = Outputs.file(
         description='The result HTML page with summary reports output by the '
-        'simulation.', path='output/run/eplustbl.htm', optional=True
+        'simulation.', path='output/run/eplustbl.htm'
     )
 
     err = Outputs.file(
