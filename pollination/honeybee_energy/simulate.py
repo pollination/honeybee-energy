@@ -37,7 +37,17 @@ class SimulateModel(Function):
         description='An additional text string to be appended to the IDF before '
         'simulation. The input should include complete EnergyPlus objects as a '
         'single string following the IDF format. This input can be used to include '
-        'EnergyPlus objects that are not currently supported by honeybee.', default=''
+        'small EnergyPlus objects that are not currently supported by honeybee. '
+        'Note that the additional-idf input should be used for larger objects '
+        'that are too long to fit in a command.',
+        default=''
+    )
+
+    additional_idf = Inputs.file(
+        description='An IDF file with text to be appended before simulation. This '
+        'input can be used to include large EnergyPlus objects that are not '
+        'currently supported by honeybee.',
+        path='additional.idf', extensions=['idf'], optional=True
     )
 
     report_units = Inputs.str(
@@ -59,8 +69,8 @@ class SimulateModel(Function):
     def simulate_model(self):
         return 'honeybee-energy simulate model model.hbjson weather.epw ' \
             '--sim-par-json sim-par.json --measures measures --additional-string ' \
-            '"{{self.additional_string}}" --report-units {{self.report_units}} ' \
-            '--folder output {{self.viz_variables}}'
+            '"{{self.additional_string}}" --additional-idf additional.idf ' \
+            '--report-units {{self.report_units}} --folder output {{self.viz_variables}}'
 
     result_folder = Outputs.folder(
         description='Folder containing all simulation result files.',
