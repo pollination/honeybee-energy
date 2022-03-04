@@ -151,3 +151,31 @@ class BaselineOrientationSimPars(Function):
     output_folder = Outputs.folder(
         description='Output folder with the simulation parameters.', path='output'
     )
+
+
+@dataclass
+class DynamicOutputs(Function):
+    """Get an IDF file that requests transmittance outputs for dynamic windows."""
+
+    model = Inputs.file(
+        description='Honeybee model in JSON format.', path='model.json'
+    )
+
+    base_idf = Inputs.file(
+        description='An optional base IDF file to which the outputs '
+        'for dynamic windows will be appended.',
+        path='base.idf', extensions=['idf'], optional=True
+    )
+
+    @command
+    def create_sim_param(self):
+        return 'honeybee-energy settings dynamic-window-outputs model.json ' \
+            '--base-idf base.idf --output-file base.idf'
+
+    dynamic_out_idf = Outputs.file(
+        description='An IDF string that requests transmittance outputs for dynamic '
+        'windows. This should be used within comfort mapping workflows to request '
+        'transmittance outputs for dynamic windows. Note that the output is just an '
+        'IDF text file that should be incorporated in the energy simulation by '
+        'means of additional IDF.', path='base.idf'
+    )
