@@ -127,6 +127,104 @@ class SimulateModel(Function):
 
 
 @dataclass
+class SimulateModelRoomBypass(Function):
+    """Simulate Model in EnergyPlus but with a check that prevents failure for no Rooms.
+    """
+
+    model = Inputs.file(
+        description='An energy Model as a HBJSON.',
+        path='model.hbjson',
+        extensions=['hbjson', 'json']
+    )
+
+    epw = Inputs.file(
+        description='Weather file.', path='weather.epw', extensions=['epw']
+    )
+
+    ddy = Inputs.file(
+        description='Optional design day file to be used in the sizing calculation '
+        'if no design days are specified in the sim_par.',
+        path='weather.ddy', extensions=['ddy'], optional=True
+    )
+
+    sim_par = Inputs.file(
+        description='SimulationParameter JSON that describes the settings for the '
+        'simulation.', path='sim-par.json', extensions=['json'], optional=True
+    )
+
+    measures = Inputs.folder(
+        description='A folder containing an OSW JSON be used as the base for the '
+        'execution of the OpenStuduo CLI. This folder must also contain all of the '
+        'measures that are referenced within the OSW.', path='measures', optional=True
+    )
+
+    additional_string = Inputs.str(
+        description='An additional text string to be appended to the IDF before '
+        'simulation. The input should include complete EnergyPlus objects as a '
+        'single string following the IDF format. This input can be used to include '
+        'small EnergyPlus objects that are not currently supported by honeybee. '
+        'Note that the additional-idf input should be used for larger objects '
+        'that are too long to fit in a command.',
+        default=''
+    )
+
+    additional_idf = Inputs.file(
+        description='An IDF file with text to be appended before simulation. This '
+        'input can be used to include large EnergyPlus objects that are not '
+        'currently supported by honeybee.',
+        path='additional.idf', extensions=['idf'], optional=True
+    )
+
+    @command
+    def simulate_model_room_check(self):
+        return 'honeybee-energy simulate model model.hbjson weather.epw ' \
+            '--sim-par-json sim-par.json --measures measures --additional-string ' \
+            '"{{self.additional_string}}" --additional-idf additional.idf ' \
+            '--check-model --skip-no-rooms --folder output'
+
+    result_folder = Outputs.folder(
+        description='Folder containing all simulation result files.',
+        path='output/run'
+    )
+
+    hbjson = Outputs.file(
+        description='A clean version of the input model that is in a format, which can '
+        'be easily consumed by OpenStudio and directly matched to EnergyPlus results.',
+        path='output/in.hbjson', optional=True
+    )
+
+    osm = Outputs.file(
+        description='The OpenStudio model used in the simulation.',
+        path='output/run/in.osm', optional=True
+    )
+
+    idf = Outputs.file(
+        description='The IDF model used in the simulation.',
+        path='output/run/in.idf', optional=True
+    )
+
+    sql = Outputs.file(
+        description='The result SQL file output by the simulation.',
+        path='output/run/eplusout.sql', optional=True
+    )
+
+    zsz = Outputs.file(
+        description='The result CSV with the zone loads over the design day output '
+        'by the simulation.', path='output/run/epluszsz.csv', optional=True
+    )
+
+    html = Outputs.file(
+        description='The result HTML page with summary reports output by the '
+        'simulation.', path='output/run/eplustbl.htm', optional=True
+    )
+
+    err = Outputs.file(
+        description='The error report output by the simulation.',
+        path='output/run/eplusout.err', optional=True
+    )
+
+
+@dataclass
 class SimulateOsm(Function):
     """Simulate an OSM file in EnergyPlus."""
 
