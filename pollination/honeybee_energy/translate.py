@@ -40,8 +40,8 @@ class ModelOccSchedules(Function):
     """
 
     model = Inputs.file(
-        description='Honeybee model in JSON format.', path='model.json',
-        extensions=['hbjson', 'json']
+        description='Honeybee model in JSON or Pkl format.', path='model.json',
+        extensions=['hbjson', 'json', 'hbpkl', 'pkl']
     )
 
     period = Inputs.str(
@@ -66,4 +66,32 @@ class ModelOccSchedules(Function):
     occ_schedule_json = Outputs.file(
         description='An occupancy schedule JSON that is useful in workflows like '
         'thermal comfort percent, daylight autonomy, etc.', path='occ_schedules.json'
+    )
+
+
+@dataclass
+class ModelTransSchedules(Function):
+    """Translate Model shade transmittance schedules into a JSON of fractional values.
+    """
+
+    model = Inputs.file(
+        description='Honeybee model in JSON or Pkl format.', path='model.json',
+        extensions=['hbjson', 'json', 'hbpkl', 'pkl']
+    )
+
+    period = Inputs.str(
+        description='An AnalysisPeriod string to dictate the start and end of the '
+        'exported values (eg. "6/21 to 9/21 between 0 and 23 @1"). Note '
+        'that the timestep of the period will determine the timestep of output '
+        'values. If unspecified, the values will be annual.', default=''
+    )
+
+    @command
+    def export_model_trans_schedules(self):
+        return 'honeybee-energy translate model-transmittance-schedules model.json ' \
+            '--period "{{self.period}}" --output-file trans_schedules.json'
+
+    trans_schedule_json = Outputs.file(
+        description='A schedule JSON that contains fractional schedule values '
+        'for each shade transmittance schedule in the model', path='trans_schedules.json'
     )
