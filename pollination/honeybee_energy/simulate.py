@@ -182,11 +182,6 @@ class SimulateModelRoomBypass(Function):
             '"{{self.additional_string}}" --additional-idf additional.idf ' \
             '--check-model --skip-no-rooms --folder output'
 
-    result_folder = Outputs.folder(
-        description='Folder containing all simulation result files.',
-        path='output/run'
-    )
-
     hbjson = Outputs.file(
         description='A clean version of the input model that is in a format, which can '
         'be easily consumed by OpenStudio and directly matched to EnergyPlus results.',
