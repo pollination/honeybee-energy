@@ -8,7 +8,7 @@ class SimParDefault(Function):
 
     ddy = Inputs.file(
         description='A DDY file with design days to be included in the '
-        'SimulationParameter', path='input.ddy', extensions=['ddy']
+        'SimulationParameter', path='input.ddy', extensions=['ddy'], optional=True
     )
 
     run_period = Inputs.str(
@@ -75,7 +75,7 @@ class SimParSizing(Function):
 
     ddy = Inputs.file(
         description='A DDY file with design days to be included in the '
-        'SimulationParameter', path='input.ddy', extensions=['ddy']
+        'SimulationParameter', path='input.ddy', extensions=['ddy'], optional=True
     )
 
     load_type = Inputs.str(
@@ -115,7 +115,7 @@ class BaselineOrientationSimPars(Function):
 
     ddy = Inputs.file(
         description='A DDY file with design days to be included in the '
-        'SimulationParameter', path='input.ddy', extensions=['ddy']
+        'SimulationParameter', path='input.ddy', extensions=['ddy'], optional=True
     )
 
     run_period = Inputs.str(
