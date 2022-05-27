@@ -149,7 +149,9 @@ class SimulateModelRoomBypass(Function):
 
     sim_par = Inputs.file(
         description='SimulationParameter JSON that describes the settings for the '
-        'simulation.', path='sim-par.json', extensions=['json'], optional=True
+        'simulation. If unspecified, some default parameters will be generated to '
+        'request monthly energy usage.', path='sim-par.json', extensions=['json'],
+        optional=True
     )
 
     measures = Inputs.folder(
