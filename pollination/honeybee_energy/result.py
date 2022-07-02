@@ -151,7 +151,7 @@ class ResultCsvQueryable(Function):
 
     run_period = Inputs.str(
         description='The name of the run period from which the CSV data will be '
-        'selected. (eg. BOSTON LOGAN INTL ARPT ANN CLG .4% CONDNS DB=>MWB).'
+        'selected. (eg. BOSTON LOGAN INTL AIRPORT ANN CLG .4% CONDNS DB=>MWB).'
     )
 
     units = Inputs.str(
