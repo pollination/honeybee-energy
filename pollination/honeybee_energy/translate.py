@@ -7,7 +7,7 @@ class ModelToOsm(Function):
     """Translate a Model JSON file into an OpenStudio Model and corresponding IDF."""
 
     model = Inputs.file(
-        description='Honeybee model in JSON format.', path='model.json',
+        description='Honeybee model in JSON format.', path='model.hbjson',
         extensions=['hbjson', 'json']
     )
 
@@ -18,7 +18,7 @@ class ModelToOsm(Function):
 
     @command
     def model_to_osm(self):
-        return 'honeybee-energy translate model-to-osm model.json ' \
+        return 'honeybee-energy translate model-to-osm model.hbjson ' \
             '--sim-par-json sim-par.json --folder output ' \
             '--log-file output/output_paths.json'
 
@@ -28,6 +28,25 @@ class ModelToOsm(Function):
 
     idf = Outputs.file(
         description='The IDF file.', path='output/run/in.idf'
+    )
+
+
+@dataclass
+class ModelToGbxml(Function):
+    """Translate a Honeybee Model JSON file into a gbXML file."""
+
+    model = Inputs.file(
+        description='Honeybee model in HBJSON format.', path='model.hbjson',
+        extensions=['hbjson', 'json']
+    )
+
+    @command
+    def model_to_gbxml(self):
+        return 'honeybee-energy translate model-to-gbxml model.hbjson ' \
+            '--output-file model.gbxml'
+
+    gbxml = Outputs.file(
+        description='The gbXML model file.', path='model.gbxml'
     )
 
 
