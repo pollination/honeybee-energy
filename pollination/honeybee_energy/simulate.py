@@ -131,7 +131,8 @@ class SimulateModelRoomBypass(Function):
     """Simulate Model in EnergyPlus but with a check that prevents failure for no Rooms.
 
     This is useful if the energy simulation is an optional step within a larger
-    recipe (eg. if it's an outdoor comfort study).
+    recipe (eg. if it's an outdoor comfort study that's only using EnergyPlus to
+    estimate outdoor surface temperatures).
     """
 
     model = Inputs.file(
