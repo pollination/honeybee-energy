@@ -12,8 +12,8 @@ with open('requirements.txt') as f:
 setuptools.setup(
     name='pollination-honeybee-energy',
     author='ladybug-tools',
-    author_email='info@ladybug.tools',
-    maintainer='chris, ladybug-tools',
+    author_email='chris@ladybug.tools',
+    maintainer='Chris, ladybug-tools',
     maintainer_email='chris@ladybug.tools, info@ladybug.tools',
     packages=setuptools.find_namespace_packages(
         include=['pollination.*'], exclude=['tests', '.github']
