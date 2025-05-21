@@ -186,7 +186,7 @@ class SimulateModelRoomBypass(Function):
         return 'honeybee-energy simulate model model.hbjson weather.epw ' \
             '--sim-par-json sim-par.json --measures measures --additional-string ' \
             '"{{self.additional_string}}" --additional-idf additional.idf ' \
-            '--check-model --skip-no-rooms --folder output'
+            '--skip-no-rooms --folder output'
 
     hbjson = Outputs.file(
         description='A clean version of the input model that is in a format, which can '
