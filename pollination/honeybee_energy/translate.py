@@ -90,8 +90,7 @@ class ModelOccSchedules(Function):
 
 @dataclass
 class ModelTransSchedules(Function):
-    """Translate Model shade transmittance schedules into a JSON of fractional values.
-    """
+    """Translate Model shade transmittance schedules into a JSON of fractional values."""
 
     model = Inputs.file(
         description='Honeybee model in JSON or Pkl format.', path='model.json',
