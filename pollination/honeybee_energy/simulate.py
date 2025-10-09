@@ -4,7 +4,7 @@ from pollination_dsl.function import Inputs, Outputs, Function, command
 
 @dataclass
 class SimulateModel(Function):
-    """Simulate a Model JSON file in EnergyPlus."""
+    """Simulate a Model file in EnergyPlus."""
 
     model = Inputs.file(
         description='An energy Model as either a HBJSON, OSM, or IDF.',
