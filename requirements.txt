@@ -1,2 +1,2 @@
 pollination-dsl==0.17.1
-honeybee-energy==1.116.126
+honeybee-energy==1.116.127
